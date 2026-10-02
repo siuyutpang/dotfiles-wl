@@ -1,0 +1,86 @@
+format = """
+$env_var\
+$conda\
+$python\
+$nix_shell\
+$directory\
+$git_branch\
+$git_status\
+$jobs\
+$character"""
+
+right_format = """
+$status\
+$cmd_duration\
+$battery"""
+
+add_newline = false
+
+[line_break]
+disabled = true
+
+[package]
+disabled = true
+
+[status]
+symbol = "[● ](bold red)"
+disabled = false
+
+[directory]
+read_only = "🔒 "
+home_symbol = "~"
+style = "bold blue"
+truncation_length = 1
+fish_style_pwd_dir_length = 1
+format = "[$read_only]($read_only_style)[$path]($style) "
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+
+[git_status]
+untracked = "🛤️ ×${count} "
+modified = "📝 x${count} "
+deleted = "🗑️ ×${count} "
+staged = "🗃️ ×${count} "
+stashed = "📦 "
+behind = "🐢 ×${count}"
+ahead = "🏎️ 💨 ×${count}"
+conflicted = "⚔️ "
+style = "bright-white"
+format = "$all_status$ahead_behind"
+
+[character]
+error_symbol = "[❯](bold red)[❯](bold red)[❯](bold red)"
+success_symbol = "[❯](bold red)[❯](bold yellow)[❯](bold green)"
+vicmd_symbol = "[❮](bold green)[❮](bold yellow)[❮](bold red)"
+
+[cmd_duration]
+min_time = 30000
+format = "⌛ [$duration]($style) "
+
+[[battery.display]]
+threshold = 15
+charging_symbol = "🔋 "
+discharging_symbol = "🪫 "
+
+[python]
+pyenv_version_name = true
+style='white bold'
+format='[(${version} )(\($virtualenv\) )]($style)'
+
+[nix_shell]
+heuristic = true
+format = '[⛄](bold blue) '
+
+[conda]
+format = '[$symbol$environment](dimmed green) '
+
+[jobs]
+symbol = '+ '
+number_threshold = 1
+symbol_threshold = 1
+
+[env_var.https_proxy]
+variable = 'https_proxy'
+symbol = "🧙 "
+format = '$symbol'
