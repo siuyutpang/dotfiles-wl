@@ -4,21 +4,26 @@
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
-if [ ! -d $ZINIT_HOME ]; then
-    mkdir -p "$(dirname $ZINIT_HOME)"
-    git clone --depth 1 https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-
-fi
+[ ! -d "$ZINIT_HOME/.git" ] && mkdir -p "$(dirname "$ZINIT_HOME")" && \
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 
 declare -A ZINIT
 ZINIT[ZCOMPDUMP_PATH]="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/zcompdump-$ZSH_VERSION"
 
 source "${ZINIT_HOME}/zinit.zsh"
 
-zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
-zinit ice depth=1; zinit light zsh-users/zsh-completions
-zinit ice depth=1; zinit light zsh-users/zsh-autosuggestions
-zinit ice depth=1; zinit light zsh-users/zsh-syntax-highlighting
+# vi 模式必须立即可用，保持同步加载
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
+# 其余插件用 Turbo 延后到提示符之后加载
+zinit wait lucid light-mode for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
 
 #: }}}
 

@@ -19,4 +19,10 @@ function d () {
     dirs -v | head -n 10
   fi
 }
-compdef _dirs d
+# compinit 延迟到提示符后（zinit Turbo），此时 compdef 可能还不存在，
+# 用 zinit 的 zicompdef 先排队，稍后由 zicdreplay 补执行。
+if (( ${+functions[compdef]} )); then
+    compdef _dirs d
+else
+    zicompdef _dirs d
+fi

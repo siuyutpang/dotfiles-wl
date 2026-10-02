@@ -18,7 +18,8 @@ zstyle ':completion:*' matcher-list \
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # zmodload zsh/complist
-compinit -C -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
+# compinit 由 zinit 的 zicompinit（见 .zshrc 的 atinit）统一负责，延迟到提示符后执行，
+# 这里不再重复调用。
 
 # Include hidden files.
 setopt globdots
