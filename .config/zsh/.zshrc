@@ -9,6 +9,8 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 declare -A ZINIT
 ZINIT[ZCOMPDUMP_PATH]="${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/zcompdump-$ZSH_VERSION"
+# 不定义 zpl/zplg/zi/zini 别名，把 zi 让给 zoxide
+ZINIT[NO_ALIASES]=1
 
 source "${ZINIT_HOME}/zinit.zsh"
 
