@@ -47,6 +47,7 @@ output Virtual-1 resolution 1920x1080 position 1920,0
 exec fcitx5 -d
 exec foot --server
 exec /usr/lib/polkit-kde-authentication-agent-1
+exec opencode service start
 
 ### Input configuration
 #
