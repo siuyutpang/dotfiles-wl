@@ -59,6 +59,12 @@ fi
 
 source <(fzf --zsh)
 
+# zsh-vi-mode 懒初始化时会把 viins（插入模式）的 ^R 重绑成原生历史搜索，
+# 这里在它初始化完成后把 fzf 的 ^R 补回来（用 zvm_after_init 钩子，不影响启动速度）
+function zvm_after_init() {
+  bindkey -M viins '^R' fzf-history-widget
+}
+
 eval "$(zoxide init zsh)"
 
 eval "$(direnv hook zsh)"
