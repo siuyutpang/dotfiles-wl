@@ -92,8 +92,8 @@ invert = true
 history_filter = [
   # bare navigation, carries no signal
   '^cd( \.\.)?$',
-  '^ls( |$)',
-  '^ll( |$)',
+  '^ls$',
+  '^ll$',
   '^clear$',
   '^exit$',
   '^pwd$',
