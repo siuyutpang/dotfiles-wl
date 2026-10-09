@@ -1,6 +1,5 @@
 #Vi mode
 bindkey -v
-export KEYTIMEOUT=1
 
 # Edit line in vim with ctrl-v
 autoload edit-command-line; zle -N edit-command-line
