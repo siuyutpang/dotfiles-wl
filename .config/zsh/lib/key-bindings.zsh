@@ -1,10 +1,10 @@
 #Vi mode
 bindkey -v
 
-# Edit line in vim with ctrl-v
+# Edit line in vim with ctrl-g
 autoload edit-command-line; zle -N edit-command-line
-bindkey '^v' edit-command-line
-bindkey -M vicmd '^v' edit-command-line
+bindkey '^g' edit-command-line
+bindkey -M vicmd '^g' edit-command-line
 
 # Fix delete and backword
 bindkey "^[[3~" delete-char
