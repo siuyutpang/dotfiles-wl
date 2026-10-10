@@ -251,7 +251,7 @@ bar {
     }
 }
 
-# default_border none
+default_border normal 0
 font pango:Iosevka,LXGW WenKai Mono 11
 
 include /etc/sway/config.d/*
